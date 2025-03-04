@@ -30,7 +30,7 @@ Follow these steps to set up the project on your local machine:
 
 1. **Clone the Repository:**
    ```sh
-   git clone https://github.com/yourusername/todo-app.git
+   git clone https://github.com/Amanrajraw0/Todo-app.git
    cd todo-app
    ```
 
