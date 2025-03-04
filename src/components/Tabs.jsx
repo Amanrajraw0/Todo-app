@@ -1,20 +1,35 @@
-import React from 'react'
+export function Tabs(props) {
+  const { todos, selectedTab, setSelectedTab } = props;
 
-function Tabs() {
-    const tabs=['All','Open','Completed']
+  const tabs = ["All", "Open", "Completed"];
+
   return (
-      <nav className='tab-container'>
-          {tabs.map((tab, tabIndex) => {
-              return (
-                  <button key={tabIndex}
-                  className='tab-button'>
-                      <h4>{tab} <span>(0)</span></h4>
-                  </button>
-              )
-              
-          })}
-   </nav>
-  )
-}
+    <nav className="tab-container">
+      {tabs.map((tab, tabIndex) => {
+        const numOfTasks =
+          tab === "All"
+            ? todos.length
+            : tab === "Open"
+            ? todos.filter((val) => !val.complete).length
+            : todos.filter((val) => val.complete).length;
 
-export default Tabs
+        return (
+          <button
+            onClick={() => {
+              setSelectedTab(tab);
+            }}
+            key={tabIndex}
+            className={
+              "tab-button " + (tab == selectedTab ? " tab-selected" : " ")
+            }
+          >
+            <h4>
+              {tab} <span>({numOfTasks})</span>
+            </h4>
+          </button>
+        );
+      })}
+      <hr />
+    </nav>
+  );
+}
