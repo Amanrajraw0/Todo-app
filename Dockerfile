@@ -1,17 +1,8 @@
-# Base image
-FROM python:3.11-slim
-
-# Set working directory
+FROM node:18
 WORKDIR /app
-
-# Copy project files to container
+COPY package*.json ./
+RUN npm install
 COPY . .
-
-# Install dependencies
-RUN pip install flask
-
-# Expose port
 EXPOSE 5000
+CMD ["npm", "start"]
 
-# Command to run the app
-CMD ["python", "app.py"]
